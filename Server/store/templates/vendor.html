@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %}
+<div class="collection">
+  {% for product in tasks %} {% if product.quantity != 0 %}
+  <a
+    class="product"
+    href="{% url 'store:product' product_id=product.product_id %}"
+  >
+    <div class="profile">
+      <object>
+        <a
+          class="delete"
+          href="{% url 'store:deleteFromVendor' product_id=product.product_id %}"
+          >X</a
+        >
+      </object>
+      <img
+        class="product-image"
+        src="{{base_url}}/{{product.image}}"
+        alt="product"
+      />
+      <div class="price">&#8377;{{product.price}}</div>
+    </div>
+    <div class="details">
+      <div class="title">{{product.product_name}}</div>
+      <div class="description">{{product.specification}}</div>
+    </div>
+  </a>
+  {% endif %} {% endfor %}
+</div>
+{% endblock %}

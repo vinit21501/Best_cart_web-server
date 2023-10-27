@@ -1,0 +1,53 @@
+
+body {
+    background-color: rgb(250, 250, 250);
+    padding-left: 5%;
+    margin: 80px 20px 100px 80px;
+    font-size: 110%;
+    font-weight: bolder;
+    text-align: center;
+    font-family: "Space Mono", monospace;
+}
+
+.sidebar {
+    background-color: rgb(200, 200, 200);
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100px;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    visibility: visible;
+}
+
+.error, .nftext {
+    font-size: 250%;
+}
+
+.error {
+    border-bottom: solid 1px black;
+}
+
+.page-nav {
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: x-large;
+    color: black;
+}
+
+a {
+    text-decoration: none;
+    -webkit-transition: 0.2s ease all;
+    -o-transition: 0.2s ease all;
+    transition: 0.2s ease all;
+    background: transparent;
+}
+
+.h1 {
+    font-size: 5rem;
+}

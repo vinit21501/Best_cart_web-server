@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %}
+<div class="collection">
+  {% for product in tasks %} {% if product.quantity == 0 %}
+  <div class="product">
+    <div class="profile">
+      <img
+        class="product-image"
+        src="{{base_url}}/{{product.image}}"
+        alt="product"
+      />
+      <div class="price">&#8377;{{product.price}}</div>
+    </div>
+    <div class="details">
+      <div class="title">{{product.product_name}}</div>
+      <div class="description">{{product.specification}}</div>
+    </div>
+  </div>
+  {% endif %} {% endfor %}
+</div>
+{% endblock %}

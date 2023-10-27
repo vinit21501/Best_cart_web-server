@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %} {% for order in tasks %}
+<link rel="stylesheet" href="{% static 'style/orders.css' %}" />
+<a class="main" href="{% url 'store:order' order_id=order.order_id %}">
+  <div class="text">
+    order id :
+    <p class="value">{{order.order_id}}</p>
+  </div>
+  <div class="text">
+    status :
+    <p class="value">{{order.status}}</p>
+  </div>
+  <div class="text">
+    mode of payment :
+    <p class="value">{{order.mode_of_payment}}</p>
+  </div>
+  {% if order.mode_of_payment == "online" %}
+  <div class="text">
+    transaction id :
+    <p class="value">{{order.transaction_id_id}}</p>
+  </div>
+  {% endif %}
+</a>
+{% endfor %} {% endblock %}

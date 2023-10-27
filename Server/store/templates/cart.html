@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/orders.css' %}" />
+<script src="{% static 'js/cart.js' %}"></script>
+<form
+  action="cart"
+  method="POST"
+  class="form"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {% for detail in details %}
+  <div class="main1">
+    <div>
+      <a href="{% url 'store:product' product_id=detail.prod.product_id %}">
+        <img
+          class="image"
+          src="{{base_url}}/{{detail.prod.image}}"
+          alt="product image"
+        />
+      </a>
+    </div>
+    <div class="text">
+      Product name :
+      <p class="value">{{detail.prod.product_name}}</p>
+    </div>
+    <div class="text">
+      Price :
+      <p class="price{{detail.prod.product_id}}">{{detail.prod.price}}</p>
+    </div>
+    <div class="text">
+      Quantity :
+      <p>
+          <input
+            min="0"
+            class="quantity"
+            type="number"
+            name="{{detail.prod.product_id}}"
+            placeholder="quantity"
+            value="{{detail.order.product_quantity}}"
+            style="width:50%"
+            onclick="product_price()"
+          />
+      </p>
+    </div>
+    <div class="text">
+      Total :
+      <p class="total{{detail.prod.product_id}}">0</p>
+    </div>
+  </div>
+  {% endfor %}
+  {% if empty %}
+  <a style="font-size:xx-large" href="/store">Your Cart is empty!, Let's Shopping</a>
+  {% else %}
+  <div>
+    Total :
+    <p class="cart_total">0</p>
+  </div>
+  <div>
+    <input type="submit" class="submit" value="Checkout" />
+  </div>
+  {% endif %}
+  {% for message in messages %}
+  <p class="message">{{message}}</p>
+  {% endfor %}
+</form>
+{% endblock %}

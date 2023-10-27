@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BestCart</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/mainscreen.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/product_page.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'style/register.css' %}" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/wall1.jpg' %}"
+    />
+    <script src="{% static 'js/BestCart.js' %}"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="left-section">
+        <img
+          class="menu-icon"
+          src="{% static 'images/hamburger-menu-icon.png' %}"
+          alt="menu icon"
+          title="menu"
+          onclick="menu()"
+        />
+        <h1 class="bestcart" href="{% url 'store:defaultHome' %}">BestCart</h1>
+      </div>
+      <div class="middle-section">
+        <form
+          action="{% url 'store:result' %}"
+          method="POST"
+          class="form"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <input class="search-bar" name="search" type="text" placeholder="search" />
+        </form>
+      </div>
+      <div class="right-section">
+        {% if user.is_authenticated %}
+        <a title="profile" href="{% url 'store:profile' %}">{{name}}</a>
+        <a title="log out" href="{% url 'store:logout' %}">log out</a>
+        {% else %}
+        <a title="sign in" href="{% url 'store:login' %}">sign in</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="sidebar">
+      {%if user.is_authenticated %} {% if user.is_seller %}
+      <a title="title" href="{% url 'store:vendor' %}">HOME</a>
+      <a title="removed product" href="{% url 'store:removeProduct' %}">REMOVED PRODUCT</a>
+      {% else %}
+      <a title="home" href="{% url 'store:defaultHome' %}">HOME</a>
+      {% endif %} {% if user.is_customer %}
+      <a title="cart" href="{% url 'store:cart' %}">CART</a>
+      <a title="wishlist" href="{% url 'store:wishlist' %}">Wishlist</a>
+      <a title="order" href="{% url 'store:orders' %}">Orders</a>
+      {% elif user.is_seller %}
+      <a title="add product" href="{% url 'store:add_product' %}">Add Product</a>
+      {%endif%} {%endif%}
+      <a title="support currently not available">SUPPORT</a>
+      <a title="do not contact at all">CONTACT</a>
+    </div>
+    {% block content %} {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,55 @@
+.header {
+    background-color: rgb(200, 200, 200);
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    top: 0;
+    right: 0;
+    left: 0;
+    border-bottom: 2px solid rgb(169, 169, 169);
+    box-shadow: 2px 2px 5px rgb(184, 184, 184);
+    z-index: 1;
+}
+
+.bestcart {
+    text-align: center;
+    font-size: 175%;
+    color: royalblue;
+}
+
+.left-section {
+    display: flex;
+    font-size: 80%;
+    align-items: center;
+    color: blueviolet;
+}
+
+.menu-icon {
+    width: 25px;
+    margin: 25px;
+}
+
+.middle-section{
+    flex: 1;
+    display: flex;
+    padding: 0 10%;
+}
+
+.search-bar {
+    flex: 0.6;
+    border-radius: 50px;
+    height: 5px;
+    font-size: 100%;
+    padding: 10px;
+    margin-left: 20px;
+    width: 150%;
+    max-width: 400px;
+}
+
+.right-section {
+    margin: 2%;
+    font-size: 150%;
+    flex-shrink: 0;
+}

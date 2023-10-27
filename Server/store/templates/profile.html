@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="datatable">
+    {% if user.is_authenticated %}
+    <p>Email : {{user.email}}</p>
+    <p>Last login : {{user.last_login}}</p>
+    {% if user.is_customer %}
+    <p>Name : {{customer.customer_name}}</p>
+    <p>Loaction : {{customer.customer_location}}</p>
+    {% elif user.is_seller %}
+    <p>Name : {{vendor.vendor_name}}</p>
+    {% endif %}
+    <div>
+        <p>Mobile number : 
+            {% for number in mobile %}
+            {{number.phone_number}}
+            {% endfor %}
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

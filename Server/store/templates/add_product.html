@@ -1,0 +1,76 @@
+{% extends 'basetemplate.html' %} {% load static %} {% block content %}
+<div class="bestcart">
+  <a href="{% url 'store:vendor' %}">BestCart Vendor</a>
+</div>
+<div class="datatable">
+  <form
+    action="add_product"
+    method="POST"
+    class="form"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2>Add Product</h2>
+    <div>
+      <p>Product name</p>
+      <input
+        class="input"
+        type="text"
+        name="name"
+        placeholder="product name"
+      />
+    </div>
+    <div>
+      <p>Category name</p>
+      <input
+        class="input"
+        type="text"
+        name="cat_name"
+        placeholder="category name"
+      />
+    </div>
+    <div>
+      <p>Description</p>
+      <input
+        class="input"
+        type="text"
+        name="desc"
+        placeholder="specification (max = 50 char)"
+      />
+    </div>
+    <div>
+      <p>Price</p>
+      <input
+        min="1"
+        class="input"
+        type="number"
+        name="price"
+        placeholder="price"
+        step="0.01"
+        value="1"
+      />
+    </div>
+    <div>
+      <p>Quantity</p>
+      <input
+        min="0"
+        class="input"
+        type="number"
+        name="quantity"
+        placeholder="quantity"
+        value="0"
+      />
+    </div>
+    <div>
+      <p>Image</p>
+      <input type="file" name="image">
+    </div>
+    <div>
+      <input type="submit" class="submit" />
+    </div>
+    {% for message in messages %}
+    <p class="message">{{message}}</p>
+    {% endfor %}
+  </form>
+</div>
+{% endblock %}

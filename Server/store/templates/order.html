@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'style/orders.css' %}" />
+{% for element in products %}
+<a
+  class="main1"
+  href="{% url 'store:product' product_id=element.product.product_id %}"
+>
+  <div>
+    <img
+      class="image"
+      src="{{base_url}}/{{element.product.image}}"
+      alt="product image"
+    />
+  </div>
+  <div class="text">
+    Product name :
+    <p class="value">{{element.product.product_name}}</p>
+  </div>
+  <div class="text">
+    Price :
+    <p class="value">{{element.product.price}}</p>
+  </div>
+  <div class="text">
+    Quantity :
+    <p class="value">{{element.detail.product_quantity}}</p>
+  </div>
+  <div class="text">
+    Total :
+    <p class="value">{{element.detail.amount}}</p>
+  </div>
+</a>
+{% endfor %} Total :
+<p class="value">{{total}}</p>
+{% endblock %}

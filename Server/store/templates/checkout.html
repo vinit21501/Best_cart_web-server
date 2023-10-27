@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load static %} {% static "products" as base_url %}
+{% block content %}
+<div class="datatable">
+  <form
+    action="checkout"
+    method="POST"
+    class="form"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <h2>Checkout</h2>
+    <div>
+      <input type="radio" name="mode" value="offline" />
+      <label for="offline">Cash on Delivery</label>
+    </div>
+    <div>
+      <input type="radio" name="mode" value="online" />
+      <label for="upi">UPI / Net Banking</label>
+    </div>
+    <div>
+      <input type="radio" name="mode" value="online" />
+      <label for="card"> Debit / Credit card </label>
+    </div>
+    <div>
+      <input class="submit" type="submit" value="checkout" />
+      {% for message in messages %}
+      <p class="message">{{message}}</p>
+      {% endfor %}
+    </div>
+  </form>
+</div>
+{% endblock %}
